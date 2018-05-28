@@ -1,6 +1,8 @@
 <h2>Create your Account</h2>
 <form class="form-register" #f="ngForm" (ngSubmit)="register(f.value)">
-
+    <div *ngIf="isRegisteredSuccess" class="alert alert-success">
+            <strong>Congratulations!</strong> You are now registered.
+    </div>
     <label for="email">Email</label>
     <input required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ngModel name=email #email="ngModel" id="email" type="email" class="form-control" placeholder="email@domain.com">
     <div class="alert alert-danger" *ngIf="email.touched && !email.valid">

@@ -11,6 +11,7 @@ import { EmailValidator } from '@angular/forms';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
+  private isRegisteredSuccess: Boolean;
 
   constructor(private router: Router,
     private registrationService: RegisterService) {}
@@ -21,10 +22,12 @@ export class RegisterFormComponent implements OnInit {
       result => {
       if ( result ) {
         // this.router.navigate(['login']);
+        this.isRegisteredSuccess = true;
         return true;
       }
     },
     error => {
+      this.isRegisteredSuccess = false;
       return false;
     });
     }

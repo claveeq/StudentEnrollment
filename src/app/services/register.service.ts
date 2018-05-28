@@ -7,7 +7,6 @@ const HttpOption = <any>{
   header: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +19,7 @@ export class RegisterService {
       map(response => {
         const result = response.json();
         console.log(result);
+        return true;
       }));
   }
 }
