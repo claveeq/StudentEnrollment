@@ -1,0 +1,54 @@
+<h2>Create your Account</h2>
+<form class="form-register" #f="ngForm" (ngSubmit)="register(f.value)">
+
+    <label for="email">Email</label>
+    <input required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ngModel name=email #email="ngModel" id="email" type="email" class="form-control" placeholder="email@domain.com">
+    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.pattern">Please enter a valid email account.</div>
+    </div>  
+
+    <label for="firstName">First Name</label>
+    <input required ngModel name="firstName"  #firstName="ngModel" id="firstName" type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First name is required</div>
+
+    <label for="middleName">Middle Name</label>
+    <input required ngModel name="middleName"  #middleName="ngModel" id=middleName type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="middleName.touched && !middleName.valid">Middle name is required</div>
+
+    <label for="lastName">Last Name</label>
+    <input required ngModel name="lastName"  #lastName="ngModel" id=lastName type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last name is required</div>
+
+    <label>Gender</label>
+    <div class="radio">
+        <label>
+            <input required ngModel #gender="ngModel" type="radio" name="gender" value="1">
+            Male
+        </label>
+    </div>
+    <div class="radio">
+        <label class="radio">
+            <input required ngModel #gender="ngModel" type="radio" name="gender" value="2">
+            Female
+        </label>
+    </div>
+    <div class="alert alert-danger" *ngIf="gender.touched && !gender.valid">Gender is required</div>
+
+    <label for="password">Password</label>
+    <input required minlength="6" ngModel name="password"  #password="ngModel" id=password type="password" class="form-control">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Password must be minimum of {{ password.errors.minlength.requiredLength }} characters.</div>
+    </div>
+
+        <label for="confirmPassword">Re-enter Password</label>
+        <input required pattern="{{password.value}}" ngModel name="confirmPassword"  #confirmPassword="ngModel" id=confirmPassword type="password" class="form-control">
+        <div class="alert alert-danger" *ngIf="confirmPassword.touched && !confirmPassword.valid">
+            <div *ngIf="confirmPassword.errors.required">Password is required</div>
+            <div *ngIf="confirmPassword.errors.pattern">Password did not match.</div>
+        </div>
+
+<button class="btn btn-primary">Register</button> 
+<label>Already have an account? Login <a routerLink="/login">here</a>!</label>
+</form>
