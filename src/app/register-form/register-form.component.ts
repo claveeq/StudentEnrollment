@@ -12,7 +12,6 @@ import { EmailValidator } from '@angular/forms';
 })
 export class RegisterFormComponent implements OnInit {
   private isRegisteredSuccess: Boolean;
-
   constructor(private router: Router,
     private registrationService: RegisterService) {}
 

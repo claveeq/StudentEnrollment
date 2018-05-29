@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
         result => {
         if ( result ) {
           // console.log(result.toString());
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['student']);
         } else {
           this.invalidLogin = true;
         }
