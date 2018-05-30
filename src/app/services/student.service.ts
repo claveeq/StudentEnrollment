@@ -19,7 +19,11 @@ export class StudentService {
     return this.http.get<Student[]>('http://ys-training.gq/api/students/');
   }
 
-  getSpecificStudent(id: number): Observable<Student> {
+  getSpecificStudent(id: string): Observable<Student> {
     return this.http.get<Student>(`http://ys-training.gq/api/students/${id}`);
+  }
+
+  deleteSelectedStudent(id: string) {
+    return this.http.post<string>(`http://ys-training.gq/api/students/${id}/delete`, id);
   }
 }

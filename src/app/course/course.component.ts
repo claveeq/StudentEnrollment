@@ -1,3 +1,4 @@
+import { CourseService } from './../services/course.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  constructor(courseServie: CourseService) { }
 
   ngOnInit() {
   }

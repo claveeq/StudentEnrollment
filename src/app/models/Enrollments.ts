@@ -1,8 +1,8 @@
 import { Course } from './Course';
 export class Entrollments {
-    id: number;
-    studentId: number;
-    courseId: number;
-    course: Course;
+    public  id: number;
+    public studentId: number;
+    public courseId: number;
+    public course: Course;
 }
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Student } from './../models/Student';
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../services/student.service';
@@ -10,9 +11,9 @@ import { StudentService } from '../services/student.service';
 })
 export class StudentComponent implements OnInit {
   studentList;
-  selectedStudent;
+  // selectedStudent;
   isSelected = false;
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private router: Router) {
     // Initialize table
     this.studentService.getStudentList()
     .subscribe(
@@ -22,11 +23,7 @@ export class StudentComponent implements OnInit {
   }
     onSelect (student: Student) {
       this.isSelected = true;
-      this.studentService.getSpecificStudent(student.id)
-      .subscribe(
-        data => {
-          this.selectedStudent = data;
-        });
+      this.router.navigate([`student/${student.id}`]);
     }
 
   ngOnInit() {
