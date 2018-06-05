@@ -4,7 +4,6 @@ import { Entrollments } from './../models/Enrollments';
 import { HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { IEnroll } from '../models/Enroll';
 
 interface ICourse {
    Studentid: number;
@@ -14,19 +13,20 @@ interface ICourse {
   providedIn: 'root'
 })
 export class CourseService {
-
+  // url = 'http://ys-training.gq/';
+  url = 'http://localhost:3064/';
   constructor(private http: HttpClient) { }
 
   getCourses() {
-    return this.http.get<Course[]>(`http://ys-training.gq/api/courses/`);
+    return this.http.get<Course[]>(this.url + `api/courses/`);
   }
 
   unenrollCourse(enrollment: Entrollments) {
 
-    return this.http.post<string>(`http://ys-training.gq/api/students/unenroll`, enrollment);
+    return this.http.post<string>(this.url + `api/students/unenroll`, enrollment);
   }
 
   enrollCourse(enrollment: Entrollments) {
-    return this.http.post<string>(`http://ys-training.gq/api/students/enroll`, enrollment );
+    return this.http.post<string>(this.url + `api/students/enroll`, enrollment );
   }
 }

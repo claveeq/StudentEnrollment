@@ -20,16 +20,13 @@ export class LoginFormComponent implements OnInit {
 
   signIn(credentials) {
       this.authService.login(credentials)
-      .subscribe(
-        result => {
+      .subscribe((result) => {
         if ( result ) {
-          // console.log(result.toString());
           this.router.navigate(['student']);
         } else {
           this.invalidLogin = true;
         }
-      },
-      error => {
+      }, (error) => {
         this.invalidLogin = true;
       }
     );

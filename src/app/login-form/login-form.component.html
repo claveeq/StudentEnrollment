@@ -5,8 +5,8 @@
     Invalid username and/or password.
   </div>
 
-  <label for="email">Email</label>
-  <input required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ngModel name=email #email="ngModel" id="email" type="email" class="form-control" placeholder="email@domain.com">
+  <label for="userName">Email</label>
+  <input required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ngModel name=userName #email="ngModel" id="userName" type="email" class="form-control" placeholder="email@domain.com">
   <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
           <div *ngIf="email.errors.required">Email is required</div>
           <div *ngIf="email.errors.pattern">Please enter a valid email account.</div>

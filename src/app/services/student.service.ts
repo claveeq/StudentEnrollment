@@ -13,17 +13,20 @@ import { Observable } from 'rxjs';
 })
 export class StudentService {
 
+  // url = 'http://ys-training.gq/';
+  url = 'http://localhost:3064/';
+
   constructor(private http: HttpClient) { }
 
   getStudentList(): Observable<Student[]> {
-    return this.http.get<Student[]>('http://ys-training.gq/api/students/');
+    return this.http.get<Student[]>(this.url + 'api/students/');
   }
 
   getSpecificStudent(id: string): Observable<Student> {
-    return this.http.get<Student>(`http://ys-training.gq/api/students/${id}`);
+    return this.http.get<Student>(this.url + `api/students/${id}`);
   }
 
   deleteSelectedStudent(id: string) {
-    return this.http.post<string>(`http://ys-training.gq/api/students/${id}/delete`, id);
+    return this.http.post<string>(this.url + `api/students/${id}/delete`, id);
   }
 }

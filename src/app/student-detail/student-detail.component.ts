@@ -53,7 +53,6 @@ export class StudentDetailComponent implements OnInit {
 
     onClick_AddCourse(course: Course) {
        console.log(course.id);
-      
         this.enroll = new Enroll();
         this.enroll.studentId = this.id;
         this.enroll.courseId = course.id;

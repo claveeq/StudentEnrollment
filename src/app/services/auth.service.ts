@@ -3,48 +3,46 @@ import { Http, Headers } from '@angular/http';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/toPromise';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 export class AuthService {
-  private _headers = {headers: new HttpHeaders().set('Authentication', 'application/json')};
-
-//   constructor(private http: Http) {
-//   }
-// // userName, grant_type, password) (Grant_type is “password”)
-
-//   login(credentials) {
-//     const body = `userName=${credentials.email}&password=${credentials.password}&grant_type=password`;
-//     return this.http.post('http://ys-training.gq/token', body ).pipe(
-//       map(response => {
-//         const result = response.json();
-//       if ( result && result.access_token) {
-//         localStorage.setItem('token', result.access_token);
-//         return true;
-//       }
-//       return false;
-//       }));
+  url = 'http://localhost:3064/';
+  // url = 'http://ys-training.gq/';
 
   constructor(private http: Http) { }
-// userName, grant_type, password) (Grant_type is “password”)
-
+  // userName, grant_type, password) (Grant_type is “password”)
+  private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
   public getToken(): string {
     return localStorage.getItem('token');
   }
 
   login(credentials) {
-    const body = `userName=${credentials.email}&password=${credentials.password}&grant_type=password`;
-    return this.http.post('http://ys-training.gq/token', body ).pipe(
+    const body = `userName=${credentials.userName}&password=${credentials.password}&grant_type=password`;
+    return this.http.post(this.url + 'token', body).pipe(
       map(response => {
         const result = response.json();
-      if ( result && result.access_token) {
-        localStorage.setItem('token', result.access_token);
-        return true;
-      }
-      return false;
+        console.log(response, result);
+        if (result && result.access_token) {
+          localStorage.setItem('token', result.access_token);
+          return true;
+        }
+        return false;
       }));
   }
+
+  // login(credentials) {
+  //   const body = `userName=${credentials.email}&password=${credentials.password}&grant_type=password`;
+  //   return this.http.post( this.url + 'token', body ).subscribe(
+  //     response => {
+  //       // const result = response.json();
+  //     if ( response && response.access_token) {
+  //       localStorage.setItem('token', response.access_token);
+
+  //     }
+  //     });
+  // }
 
   logout() {
   }
